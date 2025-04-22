@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Username already exists. Choose another one.";
     } else {
   
-        $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+        $stmt = $conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, 'user')");
         $stmt->bind_param('ss', $username, $hashed_password);
         if($stmt->execute()) {
             $_SESSION["user_id"] = $stmt->insert_id;
